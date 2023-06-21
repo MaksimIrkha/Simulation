@@ -1,8 +1,8 @@
-package org.example.Entities;
+package org.example.entities;
 
-import org.example.Area.Area;
-import org.example.Path.PathFinder;
-import org.example.Area.Position;
+import org.example.area.Area;
+import org.example.path.PathFinder;
+import org.example.area.Position;
 
 import java.util.List;
 
@@ -17,28 +17,14 @@ public abstract class Creature extends Entity {
     public void changeHealth(int amount) {
         health += amount;
     }
-    public void eatHerbivore(Position position) {
-        Area area = Area.getInstance();
-        area.removeEntityAtLocation(position);
-        changeHealth(10);
-
-    }
-    public void eatGrass(Position position) {
-        Area area = Area.getInstance();
-        area.removeEntityAtLocation(position);
-        changeHealth(5);
-
-    }
 
     public void makeMove() {
         Position currentPosition = getPosition();
         Area area = Area.getInstance();
 
-
         changeHealth(-5);
 
         if (health <= 0) {
-
             area.removeEntityAtLocation(currentPosition);
             return;
         }
@@ -56,13 +42,17 @@ public abstract class Creature extends Entity {
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
                     area.setEntity(getPosition(), this);
-                } else if (entityAtNextPosition instanceof Herbivore) {
-                    eatHerbivore(nextPosition);
+                } else if (entityAtNextPosition instanceof Herbivore && this instanceof Predator) {
+                    Predator predator = (Predator) this;
+                    Herbivore herbivore = (Herbivore) entityAtNextPosition;
+                    predator.eatHerbivore(nextPosition);
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
                     area.setEntity(getPosition(), this);
-                } else if (entityAtNextPosition instanceof Grass) {
-                    eatGrass(nextPosition);
+                } else if (entityAtNextPosition instanceof Grass && this instanceof Herbivore) {
+                    Herbivore herbivore = (Herbivore) this;
+                    Grass grass = (Grass) entityAtNextPosition;
+                    herbivore.eatGrass(nextPosition);
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
                     area.setEntity(getPosition(), this);
@@ -70,6 +60,5 @@ public abstract class Creature extends Entity {
             }
         }
     }
-
 
 }

@@ -1,9 +1,9 @@
-package org.example.Simulation;
+package org.example.simulation;
 
-import org.example.Actions.*;
-import org.example.Area.Area;
-import org.example.Area.AreaRenderer;
-import org.example.Area.ClearScreen;
+import org.example.actions.*;
+import org.example.area.Area;
+import org.example.area.AreaRenderer;
+import org.example.area.ClearScreen;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.example.Actions;
+package org.example.actions;
 
 public abstract class Action {
 

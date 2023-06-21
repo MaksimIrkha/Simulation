@@ -1,6 +1,6 @@
-package org.example.Entities;
+package org.example.entities;
 
-import org.example.Area.Position;
+import org.example.area.Position;
 
 public class Rock extends Entity{
     public Rock(Position position){

@@ -1,7 +1,6 @@
-package org.example.Area;
+package org.example.area;
 
-import org.example.Actions.InitAction;
-import org.example.Entities.*;
+import org.example.entities.*;
 
 import java.util.HashMap;
 import java.util.Map;

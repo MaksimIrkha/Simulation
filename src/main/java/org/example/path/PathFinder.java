@@ -1,8 +1,8 @@
-package org.example.Path;
+package org.example.path;
 
-import org.example.Area.Area;
-import org.example.Area.Position;
-import org.example.Entities.*;
+import org.example.area.Area;
+import org.example.area.Position;
+import org.example.entities.*;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
-package org.example.Actions;
+package org.example.actions;
 
-import org.example.Area.Area;
-import org.example.Entities.*;
-import org.example.Area.Position;
+import org.example.area.Area;
+import org.example.entities.*;
+import org.example.area.Position;
 import java.util.Map;
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package org.example.Area;
+package org.example.area;
 
 public class ClearScreen {
     public static void clrscr() {

@@ -1,6 +1,6 @@
-package org.example.Area;
+package org.example.area;
 
-import org.example.Entities.*;
+import org.example.entities.*;
 
 public class AreaRenderer {
 

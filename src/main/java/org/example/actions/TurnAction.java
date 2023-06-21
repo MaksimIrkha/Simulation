@@ -1,8 +1,8 @@
-package org.example.Actions;
+package org.example.actions;
 
-import org.example.Area.Area;
-import org.example.Entities.*;
-import org.example.Area.AreaRenderer;
+import org.example.area.Area;
+import org.example.entities.*;
+import org.example.area.AreaRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

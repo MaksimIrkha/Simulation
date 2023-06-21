@@ -1,7 +1,7 @@
-package org.example.Entities;
+package org.example.entities;
 
-import org.example.Path.PathFinder;
-import org.example.Area.Position;
+import org.example.path.PathFinder;
+import org.example.area.Position;
 
 public abstract class Entity {
 
