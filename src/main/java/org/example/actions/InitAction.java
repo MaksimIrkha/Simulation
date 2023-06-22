@@ -1,8 +1,9 @@
 package org.example.actions;
 
 import org.example.area.Area;
-import org.example.entities.*;
 import org.example.area.Position;
+import org.example.entities.*;
+
 import java.util.Map;
 import java.util.Random;
 
@@ -10,15 +11,13 @@ public class InitAction extends Action {
     private Area area;
     private Random random = new Random();
 
-
-
     public InitAction(Area area) {
         this.area = area;
     }
 
     @Override
     public void perform() {
-        setRandomEntities(7, 15, 15, 15, 15);
+        setRandomEntities(7, 15, 25, 15, 15);
     }
 
     private void setEntity(Position position, Entity entity) {
@@ -26,7 +25,7 @@ public class InitAction extends Action {
         area.getEntities().put(position, entity);
     }
 
-    public void setRandomEntities(int numPredators, int numHerbivores, int numGrass, int numRocks, int numTrees) {
+    private void setRandomEntities(int numPredators, int numHerbivores, int numGrass, int numRocks, int numTrees) {
         for (int i = 0; i < numPredators; i++) {
             Position position = generateRandomPosition();
             setEntity(position, new Predator(position));

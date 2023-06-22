@@ -1,19 +1,19 @@
 package org.example.entities;
 
 import org.example.area.Area;
-import org.example.path.PathFinder;
 import org.example.area.Position;
+import org.example.path.PathFinder;
 
 import java.util.List;
 
 public abstract class Creature extends Entity {
-    PathFinder pathFinder;
     private int health;
-    public Creature(Position position,int health) {
+
+    public Creature(Position position, int health) {
         super(position);
-        pathFinder = new PathFinder();
         this.health = health;
     }
+
     public void changeHealth(int amount) {
         health += amount;
     }
@@ -29,6 +29,7 @@ public abstract class Creature extends Entity {
             return;
         }
 
+        PathFinder pathFinder = new PathFinder();
         Position targetPosition = pathFinder.findNearestEntity(this, area);
 
         if (targetPosition != null) {
@@ -60,5 +61,4 @@ public abstract class Creature extends Entity {
             }
         }
     }
-
 }

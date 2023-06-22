@@ -1,6 +1,7 @@
 package org.example.simulation;
 
-import org.example.actions.*;
+import org.example.actions.InitAction;
+import org.example.actions.TurnAction;
 import org.example.area.Area;
 import org.example.area.AreaRenderer;
 import org.example.area.ClearScreen;
@@ -9,33 +10,34 @@ import java.util.Scanner;
 
 public class Simulation {
     private Area area;
-    private int turnCount;
     private AreaRenderer renderer;
     private TurnAction turnAction;
-    private boolean isPaused;
     private Scanner scanner;
 
     public Simulation() {
         area = Area.getInstance();
         renderer = new AreaRenderer();
         turnAction = new TurnAction(area, renderer);
-        isPaused = false;
         scanner = new Scanner(System.in);
     }
 
-    public void addAction(Action action) {
-        turnAction.addAction(action);
+    public static void main(String[] args) {
+        Simulation simulation = new Simulation();
+        InitAction initAction = new InitAction(Area.getInstance());
+        initAction.perform();
+
+        simulation.startSimulation();
+        System.out.println("Bebra!");
     }
 
     public void nextTurn() {
-        turnCount++;
         turnAction.perform();
     }
 
-    public void startSimulation()  {
+    public void startSimulation() {
         Thread simulationThread = new Thread(() -> {
             while (area.hasGrass() && area.hasHerbivore()) {
-                if (!isPaused) {
+                if (!turnAction.isPaused()) {
                     ClearScreen.clrscr();
                     nextTurn();
                 }
@@ -73,14 +75,4 @@ public class Simulation {
         }
         scanner.close();
     }
-
-    public static void main(String[] args) throws InterruptedException {
-        Simulation simulation = new Simulation();
-        InitAction initAction = new InitAction(Area.getInstance());
-        initAction.setRandomEntities(7, 15, 25, 20, 20);
-
-        simulation.startSimulation();
-
-    }
 }
-

@@ -1,8 +1,9 @@
 package org.example.actions;
 
 import org.example.area.Area;
-import org.example.entities.*;
 import org.example.area.AreaRenderer;
+import org.example.entities.Creature;
+import org.example.entities.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,6 @@ public class TurnAction extends Action {
         lock = new Object();
     }
 
-    public void addAction(Action action) {
-        actions.add(action);
-    }
 
     @Override
     public void perform() {
@@ -50,6 +48,10 @@ public class TurnAction extends Action {
 
     public void pauseSimulation() {
         isPaused = true;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
     }
 
     public void resumeSimulation() {

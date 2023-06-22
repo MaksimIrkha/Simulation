@@ -1,17 +1,17 @@
 package org.example.area;
 
-import org.example.entities.*;
+import org.example.entities.Entity;
+import org.example.entities.Grass;
+import org.example.entities.Herbivore;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Area {
     private static final Area instance = new Area();
-
-    private Map<Position, Entity> entities = new HashMap<>();
-
     private final int width = 20;
     private final int height = 20;
+    private Map<Position, Entity> entities = new HashMap<>();
 
     private Area() {
 

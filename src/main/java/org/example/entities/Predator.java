@@ -7,7 +7,7 @@ import org.example.area.Position;
 public class Predator extends Creature {
 
     public Predator(Position position) {
-        super(position,100);
+        super(position, 100);
     }
 
 
@@ -17,8 +17,6 @@ public class Predator extends Creature {
         changeHealth(10);
 
     }
-
-
 
 
 }
