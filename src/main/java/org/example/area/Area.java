@@ -24,7 +24,7 @@ public class Area {
         return height;
     }
 
-    public void setEntity(Position position, Entity entity) {
+    public void addEntity(Position position, Entity entity) {
         entity.setPosition(position);
         entities.put(position, entity);
     }
@@ -38,28 +38,27 @@ public class Area {
     }
 
     public Map<Position, Entity> getEntities() {
-        return entities;
+        return new HashMap<>(entities);
     }
 
     public void removeEntityAtLocation(Position position) {
         entities.remove(position);
     }
 
-    public boolean hasGrass() {
+    public <T extends Entity> boolean hasEntity(Class<T> entityClass) {
         for (Entity entity : entities.values()) {
-            if (entity instanceof Grass) {
+            if (entity.getClass() == entityClass) {
                 return true;
             }
         }
         return false;
     }
 
+    public boolean hasGrass() {
+        return hasEntity(Grass.class);
+    }
+
     public boolean hasHerbivore() {
-        for (Entity entity : entities.values()) {
-            if (entity instanceof Herbivore) {
-                return true;
-            }
-        }
-        return false;
+        return hasEntity(Herbivore.class);
     }
 }

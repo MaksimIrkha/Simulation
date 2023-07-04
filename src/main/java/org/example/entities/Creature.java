@@ -43,21 +43,21 @@ public abstract class Creature extends Entity {
                 if (entityAtNextPosition == null) {
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
-                    area.setEntity(getPosition(), this);
+                    area.addEntity(getPosition(), this);
                 } else if (entityAtNextPosition instanceof Herbivore && this instanceof Predator) {
                     Predator predator = (Predator) this;
                     Herbivore herbivore = (Herbivore) entityAtNextPosition;
                     predator.eatHerbivore(nextPosition);
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
-                    area.setEntity(getPosition(), this);
+                    area.addEntity(getPosition(), this);
                 } else if (entityAtNextPosition instanceof Grass && this instanceof Herbivore) {
                     Herbivore herbivore = (Herbivore) this;
                     Grass grass = (Grass) entityAtNextPosition;
                     herbivore.eatGrass(nextPosition);
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
-                    area.setEntity(getPosition(), this);
+                    area.addEntity(getPosition(), this);
                 }
             }
         }

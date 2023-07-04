@@ -20,35 +20,30 @@ public class InitAction extends Action {
         setRandomEntities(7, 15, 25, 15, 15);
     }
 
-    private void setEntity(Position position, Entity entity) {
-        entity.setPosition(position);
-        area.getEntities().put(position, entity);
-    }
-
     private void setRandomEntities(int numPredators, int numHerbivores, int numGrass, int numRocks, int numTrees) {
         for (int i = 0; i < numPredators; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Predator(position,area));
+          area.addEntity(position, new Predator(position,area));
         }
 
         for (int i = 0; i < numHerbivores; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Herbivore(position,area));
+            area.addEntity(position, new Herbivore(position,area));
         }
 
         for (int i = 0; i < numGrass; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Grass(position));
+           area.addEntity(position, new Grass(position));
         }
 
         for (int i = 0; i < numRocks; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Rock(position));
+           area.addEntity(position, new Rock(position));
         }
 
         for (int i = 0; i < numTrees; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Tree(position));
+           area.addEntity(position, new Tree(position));
         }
     }
 

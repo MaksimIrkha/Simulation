@@ -27,7 +27,6 @@ public class Simulation {
         initAction.perform();
 
         simulation.startSimulation();
-        System.out.println("Bebra!");
     }
 
     public void nextTurn() {
