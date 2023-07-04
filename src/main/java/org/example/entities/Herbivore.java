@@ -8,10 +8,17 @@ public class Herbivore extends Creature {
         super(position, 80, area);
     }
 
+    @Override
+    public void performAction(Position nextPosition) {
+        Entity entityAtNextPosition = area.getEntityAtLocation(nextPosition);
+
+        if (entityAtNextPosition instanceof Grass) {
+            eatGrass(nextPosition);
+        }
+    }
+
     public void eatGrass(Position position) {
         area.removeEntityAtLocation(position);
         changeHealth(5);
-
     }
-
 }

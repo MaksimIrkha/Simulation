@@ -10,12 +10,17 @@ public class Predator extends Creature {
         super(position, 100, area);
     }
 
+    @Override
+    public void performAction(Position nextPosition) {
+        Entity entityAtNextPosition = area.getEntityAtLocation(nextPosition);
+
+        if (entityAtNextPosition instanceof Herbivore) {
+            eatHerbivore(nextPosition);
+        }
+    }
 
     public void eatHerbivore(Position position) {
         area.removeEntityAtLocation(position);
         changeHealth(10);
-
     }
-
-
 }

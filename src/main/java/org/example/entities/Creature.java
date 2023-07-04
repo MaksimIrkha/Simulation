@@ -9,16 +9,20 @@ import java.util.List;
 public abstract class Creature extends Entity {
     private int health;
     protected Area area;
+    protected PathFinder pathFinder;
 
     public Creature(Position position, int health, Area area) {
         super(position);
         this.health = health;
         this.area = area;
+        pathFinder = new PathFinder();
     }
 
     public void changeHealth(int amount) {
         health += amount;
     }
+
+    public abstract void performAction(Position nextPosition);
 
     public void makeMove() {
         Position currentPosition = getPosition();
@@ -30,7 +34,6 @@ public abstract class Creature extends Entity {
             return;
         }
 
-        PathFinder pathFinder = new PathFinder();
         Position targetPosition = pathFinder.findNearestEntity(this, area);
 
         if (targetPosition != null) {
@@ -44,17 +47,8 @@ public abstract class Creature extends Entity {
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
                     area.addEntity(getPosition(), this);
-                } else if (entityAtNextPosition instanceof Herbivore && this instanceof Predator) {
-                    Predator predator = (Predator) this;
-                    Herbivore herbivore = (Herbivore) entityAtNextPosition;
-                    predator.eatHerbivore(nextPosition);
-                    area.removeEntityAtLocation(currentPosition);
-                    setPosition(nextPosition);
-                    area.addEntity(getPosition(), this);
-                } else if (entityAtNextPosition instanceof Grass && this instanceof Herbivore) {
-                    Herbivore herbivore = (Herbivore) this;
-                    Grass grass = (Grass) entityAtNextPosition;
-                    herbivore.eatGrass(nextPosition);
+                } else {
+                    performAction(nextPosition);
                     area.removeEntityAtLocation(currentPosition);
                     setPosition(nextPosition);
                     area.addEntity(getPosition(), this);

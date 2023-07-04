@@ -6,11 +6,10 @@ import org.example.path.PathFinder;
 public abstract class Entity {
 
     public Position position;
-    PathFinder pathFinder;
+
 
     public Entity(Position position) {
         this.position = position;
-        pathFinder = new PathFinder();
     }
 
     public Position getPosition() {
