@@ -9,6 +9,11 @@ public class Herbivore extends Creature {
     }
 
     @Override
+    public boolean isTarget(Entity entity) {
+        return entity instanceof Grass;
+    }
+
+    @Override
     public void performAction(Position nextPosition) {
         Entity entityAtNextPosition = area.getEntityAtLocation(nextPosition);
 

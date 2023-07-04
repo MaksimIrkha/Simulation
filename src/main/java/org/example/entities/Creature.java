@@ -3,7 +3,6 @@ package org.example.entities;
 import org.example.area.Area;
 import org.example.area.Position;
 import org.example.path.PathFinder;
-
 import java.util.List;
 
 public abstract class Creature extends Entity {
@@ -21,6 +20,8 @@ public abstract class Creature extends Entity {
     public void changeHealth(int amount) {
         health += amount;
     }
+
+    public abstract boolean isTarget(Entity entity);
 
     public abstract void performAction(Position nextPosition);
 
@@ -41,18 +42,11 @@ public abstract class Creature extends Entity {
 
             if (!path.isEmpty()) {
                 Position nextPosition = path.get(1);
-                Entity entityAtNextPosition = area.getEntityAtLocation(nextPosition);
+                performAction(nextPosition);
 
-                if (entityAtNextPosition == null) {
-                    area.removeEntityAtLocation(currentPosition);
-                    setPosition(nextPosition);
-                    area.addEntity(getPosition(), this);
-                } else {
-                    performAction(nextPosition);
-                    area.removeEntityAtLocation(currentPosition);
-                    setPosition(nextPosition);
-                    area.addEntity(getPosition(), this);
-                }
+                area.removeEntityAtLocation(currentPosition);
+                setPosition(nextPosition);
+                area.addEntity(getPosition(), this);
             }
         }
     }

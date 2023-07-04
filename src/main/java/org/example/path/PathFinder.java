@@ -24,19 +24,14 @@ public class PathFinder {
 
             for (Position neighborPosition : neighborPositions) {
                 if (area.isValidPosition(neighborPosition) && !visitedPositions.contains(neighborPosition)) {
-                    if (creature instanceof Predator && area.getEntityAtLocation(neighborPosition) instanceof Herbivore) {
+                    Entity entityAtLocation = area.getEntityAtLocation(neighborPosition);
+                    if (creature.isTarget(entityAtLocation)) {
                         targetPosition = neighborPosition;
                         parents.put(neighborPosition, currentPosition);
                         foundTarget = true;
                         break;
                     }
-                    if (creature instanceof Herbivore && area.getEntityAtLocation(neighborPosition) instanceof Grass) {
-                        targetPosition = neighborPosition;
-                        parents.put(neighborPosition, currentPosition);
-                        foundTarget = true;
-                        break;
-                    }
-                    if (area.getEntityAtLocation(neighborPosition) == null) {
+                    if (entityAtLocation == null) {
                         positionQueue.add(neighborPosition);
                         parents.put(neighborPosition, currentPosition);
                     }
@@ -66,15 +61,7 @@ public class PathFinder {
         for (Position position : area.getEntities().keySet()) {
             Entity entity = area.getEntityAtLocation(position);
 
-            if (creature instanceof Predator && entity instanceof Herbivore) {
-                double distance = calculateDistance(currentPosition, position);
-
-                if (distance <= nearestDistance) {
-                    nearestEntity = position;
-                    nearestDistance = distance;
-                }
-            }
-            if (creature instanceof Herbivore && entity instanceof Grass) {
+            if (creature.isTarget(entity)) {
                 double distance = calculateDistance(currentPosition, position);
 
                 if (distance <= nearestDistance) {
@@ -114,8 +101,3 @@ public class PathFinder {
         return neighborPositions;
     }
 }
-
-
-
-
-

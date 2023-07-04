@@ -12,26 +12,19 @@ public class TurnAction extends Action {
     private Area area;
     private int turnCount;
     private AreaRenderer renderer;
-    private List<Action> actions;
     private boolean isPaused;
     private Object lock;
 
     public TurnAction(Area area, AreaRenderer renderer) {
         this.area = area;
         this.renderer = renderer;
-        actions = new ArrayList<>();
         isPaused = false;
         lock = new Object();
     }
 
-
     @Override
     public void perform() {
         turnCount++;
-
-        for (Action action : actions) {
-            action.perform();
-        }
 
         if (!isPaused) {
             for (Entity entity : new ArrayList<>(area.getEntities().values())) {
