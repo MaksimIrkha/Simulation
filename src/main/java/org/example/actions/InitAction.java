@@ -28,12 +28,12 @@ public class InitAction extends Action {
     private void setRandomEntities(int numPredators, int numHerbivores, int numGrass, int numRocks, int numTrees) {
         for (int i = 0; i < numPredators; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Predator(position));
+            setEntity(position, new Predator(position,area));
         }
 
         for (int i = 0; i < numHerbivores; i++) {
             Position position = generateRandomPosition();
-            setEntity(position, new Herbivore(position));
+            setEntity(position, new Herbivore(position,area));
         }
 
         for (int i = 0; i < numGrass; i++) {

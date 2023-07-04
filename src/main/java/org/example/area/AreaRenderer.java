@@ -16,8 +16,8 @@ public class AreaRenderer {
     public void renderArea(Area area) {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        for (int x = 0; x < Area.getInstance().getHeight(); x++) {
-            for (int y = 0; y < Area.getInstance().getWidth(); y++) {
+        for (int x = 0; x < area.getHeight(); x++) {
+            for (int y = 0; y < area.getWidth(); y++) {
                 Position position = new Position(x, y);
                 Entity entity = area.getEntityAtLocation(position);
                 if (entity != null) {

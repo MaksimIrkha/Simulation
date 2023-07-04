@@ -15,7 +15,7 @@ public class Simulation {
     private Scanner scanner;
 
     public Simulation() {
-        area = Area.getInstance();
+        area = new Area();
         renderer = new AreaRenderer();
         turnAction = new TurnAction(area, renderer);
         scanner = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class Simulation {
 
     public static void main(String[] args) {
         Simulation simulation = new Simulation();
-        InitAction initAction = new InitAction(Area.getInstance());
+        InitAction initAction = new InitAction(simulation.area);
         initAction.perform();
 
         simulation.startSimulation();

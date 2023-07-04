@@ -8,17 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Area {
-    private static final Area instance = new Area();
     private final int width = 20;
     private final int height = 20;
     private Map<Position, Entity> entities = new HashMap<>();
 
-    private Area() {
+    public Area() {
 
-    }
-
-    public static Area getInstance() {
-        return instance;
     }
 
     public int getWidth() {
@@ -29,7 +24,7 @@ public class Area {
         return height;
     }
 
-    public synchronized void setEntity(Position position, Entity entity) {
+    public void setEntity(Position position, Entity entity) {
         entity.setPosition(position);
         entities.put(position, entity);
     }
@@ -46,7 +41,7 @@ public class Area {
         return entities;
     }
 
-    public synchronized void removeEntityAtLocation(Position position) {
+    public void removeEntityAtLocation(Position position) {
         entities.remove(position);
     }
 
@@ -67,5 +62,4 @@ public class Area {
         }
         return false;
     }
-
 }

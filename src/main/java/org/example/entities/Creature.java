@@ -8,10 +8,12 @@ import java.util.List;
 
 public abstract class Creature extends Entity {
     private int health;
+    protected Area area;
 
-    public Creature(Position position, int health) {
+    public Creature(Position position, int health, Area area) {
         super(position);
         this.health = health;
+        this.area = area;
     }
 
     public void changeHealth(int amount) {
@@ -20,7 +22,6 @@ public abstract class Creature extends Entity {
 
     public void makeMove() {
         Position currentPosition = getPosition();
-        Area area = Area.getInstance();
 
         changeHealth(-5);
 
